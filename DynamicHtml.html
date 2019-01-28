@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Creating Dynamic Html</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="root">
+        <h1 class="title">CONTECT RECODER</h1>
+        <div class="main">
+            <div class="RContent">
+                <h3>Add your contect here</h3>
+                    <input type="text" name="name" id="Pname" placeholder="Name of the person..." required>
+                    <input type="number" name="PhonNo" id="phno" placeholder="Contect number ..." required>
+                    <input type="email" name="email" id="email" placeholder="Email ...">
+                    <input type="text" name="relation" id="relation" placeholder="Relation with you ...">
+                    <button type="submit" onclick="addContect()">Add</button>
+            </div>
+            <div class="container">
+                <div id="contect">
+                    <div id="mainHead">Contect List</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        // add contect field function 
+        function addContect(){
+
+            var name =  document.getElementById("Pname").value;
+            var contect = document.getElementById('phno').value;
+            var email = document.getElementById('email').value;
+            var relation = document.getElementById('relation').value;
+            if(name && contect){
+
+                var div = document.createElement('div');
+                var attr = document.createAttribute('id');
+                var attr2 = document.createAttribute('id');
+                var emailatr = document.createElement('h5');
+                var emailval = document.createTextNode('E-mail : '+ email);
+                emailatr.appendChild(emailval);
+                var relattr = document.createElement('h5');
+                var relval = document.createTextNode('your '+ relation);
+                relattr.appendChild(relval);
+                attr2.value = 'remove';
+                attr.value = 'newContect';
+                div.setAttributeNode(attr);
+                var h3 = document.createElement('h3');
+                var cname = document.createTextNode(name);
+                var h5 = document.createElement('h5');
+                var cno = document.createTextNode(contect);
+                var remove = document.createElement('div');
+                var del = document.createElement("button");
+                var sign = document.createTextNode('Delete');
+                var delattr = document.createAttribute('onclick');
+                delattr.value = 'deleteContect()';
+                del.setAttributeNode(delattr);
+                remove.setAttributeNode(attr2);
+                del.append(sign);
+                remove.appendChild(del);
+                h3.appendChild(cname);
+                h5.appendChild(cno);
+                div.appendChild(h3);
+                div.appendChild(h5);
+                div.appendChild(emailatr);
+                div.appendChild(relattr);
+                div.appendChild(remove);
+                var contectHtml = document.getElementById('contect');
+                contectHtml.appendChild(div);
+            }else{
+                console.log("name and contect number is required");
+        }
+    }
+    // delete contect function 
+    function deleteContect(){
+        console.log("hello friends i am delete function ");
+    }
+    </script>
+</body>
+</html>
